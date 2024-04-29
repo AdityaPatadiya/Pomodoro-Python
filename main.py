@@ -22,6 +22,7 @@ def reset_timer():
     check_mark.config(text="")
     global reps
     reps = 0
+    start.config(state=NORMAL)  # Enable start button when timer is reset
 
 
 # ---------------------------- TIMER MECHANISM ------------------------------- #
@@ -34,6 +35,8 @@ def start_timer():
     short_break_sec = SHORT_BREAK_MIN * 60
     long_break_sec = LONG_BREAK_MIN * 60
 
+    start.config(state=DISABLED)  # Disable start button when timer starts
+
     if reps % 8 == 0:
         my_label.config(text="Break", fg=RED)
         count_down(long_break_sec)
@@ -45,9 +48,6 @@ def start_timer():
         count_down(work_sec)
 
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- # 
-# because of we use the main loop, this package will not run another loops.
-# so for that, we have one build-in method named as 'after'.
-# and we use recursion function
 
 
 def count_down(count):
